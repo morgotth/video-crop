@@ -418,11 +418,19 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
     }
 
     public interface MediaPlayerListener {
-
-        public void onVideoPrepared();
-
-        public void onVideoEnd();
-
+        /**
+         * Invoked when video functions can be used.
+         */
+        void onVideoPrepared();
+        /**
+         * Invoked when the end of the media has been reached.
+         */
+        void onVideoEnd();
+        /**
+         * Invoked when an error occurred with video reading.
+         * @see android.media.MediaPlayer.OnErrorListener#onError(android.media.MediaPlayer, int, int)
+         *      MediaPlayer.OnErrorListener#onError(mp, what, extra)
+         */
         boolean onError(int what, int extra);
     }
 
@@ -452,6 +460,5 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-
     }
 }
