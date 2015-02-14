@@ -265,12 +265,21 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
     }
 
     /**
+     * Play video at the beginning.
+     * @see #play(int) play(int)
+     */
+    public void play() {
+        play(0);
+    }
+
+    /**
      * Play or resume video. Video will be played as soon as view is available and media player is
      * prepared.
      *
      * If video is stopped or ended and play() method was called, video will start over.
+     * @param startPosition start position in milliseconds
      */
-    public void play() {
+    public void play(int startPosition) {
         if (!mIsDataSourceSet) {
             log("play() was called but data source was not set.");
             return;
@@ -309,6 +318,7 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
         }
 
         mState = State.PLAY;
+        mMediaPlayer.seekTo(startPosition);
         mMediaPlayer.start();
     }
 
