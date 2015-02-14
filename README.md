@@ -18,7 +18,6 @@ Crop modes:
 
 Include library module to your project or copy [`TextureVideoView`](/library/src/com/dd/crop/TextureVideoView.java) class to your package.
 
-
 ```xml
 <com.dd.crop.TextureVideoView
         android:id="@+id/cropTextureView"
