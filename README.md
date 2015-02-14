@@ -94,6 +94,11 @@ TextureVideoView.seekTo(int)
 TextureVideoView.getDuration()
 
 /**
+ * Gets the current position of the video. (milliseconds)
+ */
+TextureVideoView.getCurrentPosition()
+
+/**
  * Listener trigger `onVideoPrepared` and `onVideoEnd` events
  */
 TextureVideoView.setListener(MediaPlayerListener)

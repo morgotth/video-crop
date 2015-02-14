@@ -40,7 +40,7 @@ import java.io.IOException;
 public class TextureVideoView extends TextureView implements TextureView.SurfaceTextureListener {
 
     // Indicate if logging is on
-    public static final boolean LOG_ON = true;
+    public static boolean LOG_ON = true;
 
     // Log tag
     private static final String TAG = TextureVideoView.class.getName();
@@ -226,14 +226,10 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
                 }
             });
 
-            // don't forget to call MediaPlayer.prepareAsync() method when you use constructor for
-            // creating MediaPlayer
-            mMediaPlayer.prepareAsync();
-
             // Play video when the media source is ready for playback.
             mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
+                public void onPrepared(MediaPlayer mp) {
                     mIsVideoPrepared = true;
                     if ((mIsPlayCalled || mAutoPlay) && mIsViewAvailable) {
                         log("Player is prepared and play() was called.");
@@ -246,9 +242,21 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
                 }
             });
 
+            // Allow user to override onError behavior
+            mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mp, int what, int extra) {
+                    if (mListener != null) {
+                        return mListener.onError(what, extra);
+                    }
+                    return false;
+                }
+            });
+
+            // Manual preparation because we haven't used MediaPlayer.create
+            mMediaPlayer.prepareAsync();
+
         } catch (IllegalArgumentException e) {
-            Log.d(TAG, e.getMessage());
-        } catch (SecurityException e) {
             Log.d(TAG, e.getMessage());
         } catch (IllegalStateException e) {
             Log.d(TAG, e.toString());
@@ -376,6 +384,13 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
         return mMediaPlayer.getDuration();
     }
 
+    /**
+     * @see android.media.MediaPlayer#getCurrentPosition()
+     */
+    public int getCurrentPosition() {
+        return mMediaPlayer.getCurrentPosition();
+    }
+
     static void log(String message) {
         if (LOG_ON) {
             Log.d(TAG, message);
@@ -396,6 +411,8 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
         public void onVideoPrepared();
 
         public void onVideoEnd();
+
+        boolean onError(int what, int extra);
     }
 
     @Override
