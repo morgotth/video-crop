@@ -83,6 +83,9 @@ public class TextureVideoView extends TextureView implements TextureView.Surface
     }
 
     private void initView() {
+        // Support for Android studio designer tool
+        if (isInEditMode()) return;
+
         initPlayer();
         setScaleType(ScaleType.CENTER_CROP);
         setSurfaceTextureListener(this);
