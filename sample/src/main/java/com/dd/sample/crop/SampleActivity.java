@@ -1,7 +1,5 @@
 package com.dd.sample.crop;
 
-import com.dd.crop.TextureVideoView;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +10,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
+
+import com.dd.crop.TextureVideoView;
 
 public class SampleActivity extends Activity implements View.OnClickListener,
         ActionBar.OnNavigationListener {
