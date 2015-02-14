@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
-import com.dd.crop.TextureVideoView;
+import com.dd.widget.TextureVideoView;
 
 public class SampleActivity extends Activity implements View.OnClickListener,
         ActionBar.OnNavigationListener {

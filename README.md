@@ -6,7 +6,7 @@
 
 ## Description
 
-[`TextureVideoView`](/library/src/com/dd/crop/TextureVideoView.java) is custom view based on android [`TextureView`](http://developer.android.com/reference/android/view/TextureView.html) which gives you ability easily  play and crop video. It's very similar to [`ImageView#setScaleType`](http://developer.android.com/reference/android/widget/ImageView.html#setScaleType(android.widget.ImageView.ScaleType))
+[`TextureVideoView`](/library/src/com/dd/widget/TextureVideoView.java) is custom view based on android [`TextureView`](http://developer.android.com/reference/android/view/TextureView.html) which gives you ability easily  play and crop video. It's very similar to [`ImageView#setScaleType`](http://developer.android.com/reference/android/widget/ImageView.html#setScaleType(android.widget.ImageView.ScaleType))
 
 Crop modes:
 
@@ -19,7 +19,7 @@ Crop modes:
 Include library module to your project or copy [`TextureVideoView`](/library/src/com/dd/crop/TextureVideoView.java) class to your package.
 
 ```xml
-<com.dd.crop.TextureVideoView
+<com.dd.widget.TextureVideoView
         android:id="@+id/cropTextureView"
         android:layout_width="fill_parent"
         android:layout_height="100dp"/>

@@ -1,4 +1,4 @@
-package com.dd.crop;
+package com.dd.widget;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
