@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,14 +17,15 @@ import com.dd.widget.TextureVideoView;
 public class SampleActivity extends Activity implements View.OnClickListener,
         ActionBar.OnNavigationListener {
 
-    // Video file url
-    private static final String FILE_URL = "http://www.w3schools.com/html/mov_bbb.mp4";
+    private Uri video;
     private TextureVideoView mTextureVideoView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.mov_bbb);
 
         initView();
         initActionBar();
@@ -56,7 +58,7 @@ public class SampleActivity extends Activity implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnPlay:
-                mTextureVideoView.play();
+                mTextureVideoView.start();
                 break;
             case R.id.btnPause:
                 mTextureVideoView.pause();
@@ -77,20 +79,20 @@ public class SampleActivity extends Activity implements View.OnClickListener,
             case indexCropCenter:
                 mTextureVideoView.stop();
                 mTextureVideoView.setScaleType(TextureVideoView.ScaleType.CENTER_CROP);
-                mTextureVideoView.setDataSource(FILE_URL);
-                mTextureVideoView.play();
+                mTextureVideoView.setVideoURI(video);
+                mTextureVideoView.start();
                 break;
             case indexCropTop:
                 mTextureVideoView.stop();
                 mTextureVideoView.setScaleType(TextureVideoView.ScaleType.TOP);
-                mTextureVideoView.setDataSource(FILE_URL);
-                mTextureVideoView.play();
+                mTextureVideoView.setVideoURI(video);
+                mTextureVideoView.start();
                 break;
             case indexCropBottom:
                 mTextureVideoView.stop();
                 mTextureVideoView.setScaleType(TextureVideoView.ScaleType.BOTTOM);
-                mTextureVideoView.setDataSource(FILE_URL);
-                mTextureVideoView.play();
+                mTextureVideoView.setVideoURI(video);
+                mTextureVideoView.start();
                 break;
         }
         return true;
